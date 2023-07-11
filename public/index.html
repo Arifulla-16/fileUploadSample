@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>FileManup</title>
+</head>
+<body>
+    <form action="/" method="post" class="frm" >
+        <input type="file" name="file" id="file">
+        <input type="submit" id="smbt" value="upload" >
+        <input type="hidden" id="fval" name="fileVal">
+    </form>
+    <div class="upimg">
+        <a>Selected File:</a>
+        <img src="" alt="preview" id="img" style=" display:none;height:150px; ">
+    </div>
+    <a class="k">Files from Database:</a>
+    <div class="imgSec" id="imgSec" style="display: flex;">
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
