@@ -1,5 +1,5 @@
 var fsrc = document.getElementById("file");
-var isrc = document.getElementById("img");
+var isrc = document.getElementById("upimg");
 var fval = document.getElementById("fval");
 
 var iSec = document.getElementById("imgSec");
@@ -12,7 +12,21 @@ fsrc.addEventListener("change",(e)=>{
     if (selectedFile) {
         reader.addEventListener("loadend",(e)=>{
             k=e.target.result;
-            isrc.setAttribute("src",k);
+            var newItem;
+            if(k.slice(5,10)=="image"){
+                newItem = document.createElement("img");
+                newItem.setAttribute("style","height:150px;" );
+                newItem.setAttribute("src",k);
+                newItem.setAttribute("alt",file.name);
+                isrc.appendChild(newItem);
+            }
+            else if(k.slice(5,10)=="video"){
+                newItem = document.createElement("video");
+                newItem.setAttribute("style","height:150px;width:268px;" );
+                newItem.setAttribute("src",k);
+                newItem.setAttribute("controls","");
+                isrc.appendChild(newItem);
+            }
             fval.setAttribute("value",k);
             isrc.style.display="inherit";
         });
@@ -27,14 +41,26 @@ async function logFiles() {
     const files = await response.json();
     console.log(response);
     files.forEach(file => {
-        console.log(file);
-        var newImg = document.createElement("img");
-        newImg.setAttribute("style","height:150px;" );
-        newImg.setAttribute("src",file.data);
-        newImg.setAttribute("id",file.id);
-        newImg.setAttribute("alt",file.name);
-        newImg.setAttribute("class","dbimg");
-        iSec.appendChild(newImg);
+        var newItem;
+        console.log(file.data.slice(5,10));
+        if(file.data.slice(5,10)=="image"){
+            newItem = document.createElement("img");
+            newItem.setAttribute("style","height:150px;" );
+            newItem.setAttribute("src",file.data);
+            newItem.setAttribute("id",file._id);
+            newItem.setAttribute("alt",file.name);
+            newItem.setAttribute("class","dbimg");
+            iSec.appendChild(newItem);
+        }
+        else if(file.data.slice(5,10)=="video"){
+            newItem = document.createElement("video");
+            newItem.setAttribute("style","height:150px;width:268px;" );
+            newItem.setAttribute("src",file.data);
+            newItem.setAttribute("id",file._id);
+            newItem.setAttribute("controls","");
+            newItem.setAttribute("class","dbimg");
+            iSec.appendChild(newItem);
+        }
     });
 }
 

@@ -19,12 +19,14 @@ body{
     display: flex;
     margin: auto;
     width: 50%;
-    column-gap: 10px;
+    column-gap: 10px;
+    flex-wrap: wrap;
 }
 
 #img,.dbimg{
     display: flex;
-    width: max-content;
+    width: max-content;
+
 
 }
 
